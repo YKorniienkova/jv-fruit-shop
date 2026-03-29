@@ -4,10 +4,10 @@ import core.basesyntax.db.Storage;
 import core.basesyntax.model.FruitTransaction;
 
 public class BalanceOperation implements OperationHandler {
-    Storage storage = new Storage();
+    Storage storage;
 
     public BalanceOperation(Storage storage) {
-        this.storage=storage;
+        this.storage = storage;
     }
 
     @Override
