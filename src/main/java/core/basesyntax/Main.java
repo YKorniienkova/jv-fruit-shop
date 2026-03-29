@@ -1,8 +1,5 @@
 package core.basesyntax;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import core.basesyntax.data.DataConverter;
 import core.basesyntax.data.DataConverterImpl;
 import core.basesyntax.io.FileWriter;
@@ -17,16 +14,15 @@ import core.basesyntax.service.OperationStrategy;
 import core.basesyntax.service.impl.OperationStrategyImpl;
 import core.basesyntax.service.ShopService;
 import core.basesyntax.service.impl.ShopServiceImpl;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] arg) {
         // 1. Read the data from the input CSV file
         FileReader fileReader = new FileReaderImpl();
         List<String> inputReport = fileReader.read("reportToRead.csv");
-
-        // 2. Convert the incoming data into FruitTransactions list
-        DataConverter dataConverter = new DataConverterImpl();
-        List<FruitTransaction> transactions = dataConverter.convertToTransaction(inputReport);
 
         // 3. Create and feel the map with all OperationHandler implementations
         Map<FruitTransaction.Operation, OperationHandler> operationHandlers = new HashMap<>();
@@ -35,6 +31,11 @@ public class Main {
         operationHandlers.put(FruitTransaction.Operation.RETURN, new ReturnOperation());
         operationHandlers.put(FruitTransaction.Operation.SUPPLY, new SupplyOperation());
         OperationStrategy operationStrategy = new OperationStrategyImpl(operationHandlers);
+
+        // 2. Convert the incoming data into FruitTransactions list
+        DataConverter dataConverter = new DataConverterImpl();
+        List<FruitTransaction> transactions = dataConverter.convertToTransaction(inputReport);
+
 
         // 4. Process the incoming transactions with applicable OperationHandler implementations
         ShopService shopService = new ShopServiceImpl(operationStrategy);
