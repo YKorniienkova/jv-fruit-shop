@@ -4,7 +4,7 @@ import core.basesyntax.db.Storage;
 import core.basesyntax.model.FruitTransaction;
 
 public class BalanceOperation implements OperationHandler {
-    Storage storage;
+    private Storage storage;
 
     public BalanceOperation(Storage storage) {
         this.storage = storage;
