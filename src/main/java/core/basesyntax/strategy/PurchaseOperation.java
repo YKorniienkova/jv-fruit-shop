@@ -12,7 +12,12 @@ public class PurchaseOperation implements OperationHandler {
 
     @Override
     public void handle(FruitTransaction transaction) {
-        storage.getFruits().put(transaction.getFruit(), storage.getFruits()
-                .get(transaction.getFruit()) - transaction.getQuantity());
+        int newQuantity = storage.getFruits()
+                .get(transaction.getFruit()) - transaction.getQuantity();
+        if (newQuantity >= 0) {
+            storage.getFruits().put(transaction.getFruit(), newQuantity);
+        } else {
+            throw new RuntimeException("Fruit quantity does not become negative");
+        }
     }
 }
