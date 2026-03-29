@@ -1,4 +1,4 @@
-package core.basesyntax.operation;
+package core.basesyntax.strategy;
 
 import core.basesyntax.db.Storage;
 import core.basesyntax.model.FruitTransaction;
@@ -8,6 +8,7 @@ public class PurchaseOperation implements OperationHandler {
 
     @Override
     public void handle(FruitTransaction transaction) {
-        storage.getFruits().put(transaction.getFruit(), storage.getFruits().get(transaction.getFruit()) - transaction.getQuantity());
+        storage.getFruits().put(transaction.getFruit(), storage.getFruits()
+                .get(transaction.getFruit()) - transaction.getQuantity());
     }
 }

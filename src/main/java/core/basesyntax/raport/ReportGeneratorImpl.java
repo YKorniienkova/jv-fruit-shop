@@ -1,11 +1,11 @@
 package core.basesyntax.raport;
 
 import core.basesyntax.db.Storage;
-
 import java.util.Map;
 
 public class ReportGeneratorImpl implements ReportGenerator {
-    Storage storage;
+    private Storage storage;
+
     @Override
     public String getReport() {
         StringBuilder report = new StringBuilder();

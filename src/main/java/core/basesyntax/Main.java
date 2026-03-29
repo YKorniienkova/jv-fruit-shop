@@ -3,21 +3,20 @@ package core.basesyntax;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import core.basesyntax.data.DataConverter;
 import core.basesyntax.data.DataConverterImpl;
 import core.basesyntax.io.FileWriter;
 import core.basesyntax.io.FileWriterImpl;
 import core.basesyntax.model.FruitTransaction;
-import core.basesyntax.operation.*;
+import core.basesyntax.strategy.*;
 import core.basesyntax.io.FileReaderImpl;
 import core.basesyntax.io.FileReader;
 import core.basesyntax.raport.ReportGenerator;
 import core.basesyntax.raport.ReportGeneratorImpl;
 import core.basesyntax.service.OperationStrategy;
-import core.basesyntax.service.OperationStrategyImpl;
+import core.basesyntax.service.impl.OperationStrategyImpl;
 import core.basesyntax.service.ShopService;
-import core.basesyntax.service.ShopServiceImpl;
+import core.basesyntax.service.impl.ShopServiceImpl;
 
 public class Main {
     public static void main(String[] arg) {
