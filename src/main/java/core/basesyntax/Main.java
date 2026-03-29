@@ -2,18 +2,19 @@ package core.basesyntax;
 
 import core.basesyntax.data.DataConverter;
 import core.basesyntax.data.DataConverterImpl;
+import core.basesyntax.io.FileReader;
+import core.basesyntax.io.FileReaderImpl;
 import core.basesyntax.io.FileWriter;
 import core.basesyntax.io.FileWriterImpl;
 import core.basesyntax.model.FruitTransaction;
-import core.basesyntax.strategy.*;
-import core.basesyntax.io.FileReaderImpl;
-import core.basesyntax.io.FileReader;
-import core.basesyntax.raport.ReportGenerator;
-import core.basesyntax.raport.ReportGeneratorImpl;
+import core.basesyntax.report.ReportGenerator;
+import core.basesyntax.report.ReportGeneratorImpl;
 import core.basesyntax.service.OperationStrategy;
-import core.basesyntax.service.impl.OperationStrategyImpl;
 import core.basesyntax.service.ShopService;
+import core.basesyntax.service.impl.OperationStrategyImpl;
 import core.basesyntax.service.impl.ShopServiceImpl;
+import core.basesyntax.strategy.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +36,6 @@ public class Main {
         // 2. Convert the incoming data into FruitTransactions list
         DataConverter dataConverter = new DataConverterImpl();
         List<FruitTransaction> transactions = dataConverter.convertToTransaction(inputReport);
-
 
         // 4. Process the incoming transactions with applicable OperationHandler implementations
         ShopService shopService = new ShopServiceImpl(operationStrategy);
