@@ -1,14 +1,15 @@
 package core.basesyntax;
 
-import core.basesyntax.data.DataConverter;
-import core.basesyntax.data.DataConverterImpl;
-import core.basesyntax.io.FileReader;
-import core.basesyntax.io.FileReaderImpl;
-import core.basesyntax.io.FileWriter;
-import core.basesyntax.io.FileWriterImpl;
+import core.basesyntax.service.DataConverter;
+import core.basesyntax.service.impl.DataConverterImpl;
+import core.basesyntax.db.Storage;
+import core.basesyntax.service.FileReader;
+import core.basesyntax.service.impl.FileReaderImpl;
+import core.basesyntax.service.FileWriter;
+import core.basesyntax.service.impl.FileWriterImpl;
 import core.basesyntax.model.FruitTransaction;
-import core.basesyntax.report.ReportGenerator;
-import core.basesyntax.report.ReportGeneratorImpl;
+import core.basesyntax.service.ReportGenerator;
+import core.basesyntax.service.impl.ReportGeneratorImpl;
 import core.basesyntax.service.OperationStrategy;
 import core.basesyntax.service.ShopService;
 import core.basesyntax.service.impl.OperationStrategyImpl;
@@ -29,11 +30,12 @@ public class Main {
         List<String> inputReport = fileReader.read("reportToRead.csv");
 
         // 3. Create and feel the map with all OperationHandler implementations
+        Storage storage = new Storage();
         Map<FruitTransaction.Operation, OperationHandler> operationHandlers = new HashMap<>();
-        operationHandlers.put(FruitTransaction.Operation.BALANCE, new BalanceOperation());
-        operationHandlers.put(FruitTransaction.Operation.PURCHASE, new PurchaseOperation());
-        operationHandlers.put(FruitTransaction.Operation.RETURN, new ReturnOperation());
-        operationHandlers.put(FruitTransaction.Operation.SUPPLY, new SupplyOperation());
+        operationHandlers.put(FruitTransaction.Operation.BALANCE, new BalanceOperation(storage));
+        operationHandlers.put(FruitTransaction.Operation.PURCHASE, new PurchaseOperation(storage));
+        operationHandlers.put(FruitTransaction.Operation.RETURN, new ReturnOperation(storage));
+        operationHandlers.put(FruitTransaction.Operation.SUPPLY, new SupplyOperation(storage));
         OperationStrategy operationStrategy = new OperationStrategyImpl(operationHandlers);
 
         // 2. Convert the incoming data into FruitTransactions list

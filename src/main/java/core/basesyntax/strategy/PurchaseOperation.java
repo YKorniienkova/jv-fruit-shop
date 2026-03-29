@@ -6,6 +6,10 @@ import core.basesyntax.model.FruitTransaction;
 public class PurchaseOperation implements OperationHandler {
     private Storage storage;
 
+    public PurchaseOperation(Storage storage) {
+        this.storage = storage;
+    }
+
     @Override
     public void handle(FruitTransaction transaction) {
         storage.getFruits().put(transaction.getFruit(), storage.getFruits()
